@@ -1,0 +1,6 @@
+[highlight]
+color = "red"
+
+[style]
+border_radius = 12
+border_width = 2
