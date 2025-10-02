@@ -12,7 +12,9 @@ use std::rc::Rc;
 use fuzzy_matcher::skim::SkimMatcherV2;
 use fuzzy_matcher::FuzzyMatcher;
 use serde::Deserialize;
+use std::env;
 use std::fs;
+use std::path::PathBuf;
 
 #[derive(Debug, Deserialize, Clone)]
 struct HighlightConfig {
@@ -29,9 +31,6 @@ struct Config {
     highlight: HighlightConfig,
     style: Option<StyleConfig>,
 }
-
-use std::env;
-use std::path::PathBuf;
 
 impl Config {
     fn load() -> Self {
@@ -349,7 +348,7 @@ fn main() {
     let config = Rc::new(Config::load());
 
     let app = Application::builder()
-        .application_id("com.example.Launchery")
+        .application_id("com.adv.Launchery")
         .flags(gio::ApplicationFlags::HANDLES_COMMAND_LINE)
         .build();
 
