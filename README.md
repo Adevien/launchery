@@ -1,4 +1,42 @@
-Simple launcher
+# 🚀 Launchery
 
-- cargo run (loads config.toml from directory)
-- cargo build --release (requires .config/launchery/config.toml)
+<img src="assets/demo.gif" width="640" alt="Launchery demo showcase"/>
+
+A lightweight, **blazingly fast GTK4 application launcher** for Wayland.  
+Built with [`gtk4`](https://gtk-rs.org/), [`libadwaita`](https://gnome.pages.gitlab.gnome.org/libadwaita/), and [`gtk4-layer-shell`](https://github.com/wmww/gtk4-layer-shell-rs),  
+it brings a modern app launcher experience that integrates seamlessly into your desktop.
+
+---
+
+## ✨ Features
+
+- 🔍 **Instant fuzzy search** powered by [fuzzy-matcher](https://crates.io/crates/fuzzy-matcher).
+- 🎨 **Customizable styles** via `config.toml` (highlight color, border radius, border width).
+- 🖼️ **App icons & highlighting** with fuzzy-match highlights in real-time.
+- ⚡ **Smooth animations** thanks to `libadwaita` timed animations.
+- 🖱️ **Keyboard & mouse navigation**:
+  - **Tab / Arrow keys** to move selection
+  - **Enter** to launch
+  - **Escape** to quit
+  - **Scroll** through results
+- 🖥️ **Wayland-native** overlay window with `gtk4-layer-shell`.
+
+---
+
+## 📂 Configuration
+
+The launcher reads settings from a `config.toml` file.
+
+- In **development/debug mode** → `./config.toml`
+- In **release mode** → `~/.config/launchery/config.toml`
+
+### Example `config.toml`
+
+```toml
+[highlight]
+color = "red"
+
+[style]
+border_radius = 12
+border_width  = 2
+```
