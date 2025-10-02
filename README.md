@@ -2,6 +2,8 @@
 
 <img src="assets/demo.gif" width="640" alt="Launchery demo showcase"/>
 
+> _"Made for me cause no other out there was doing what I wanted — and I'm picky."_
+
 A lightweight, **blazingly fast GTK4 application launcher** for Wayland.  
 Built with [`gtk4`](https://gtk-rs.org/), [`libadwaita`](https://gnome.pages.gitlab.gnome.org/libadwaita/), and [`gtk4-layer-shell`](https://github.com/wmww/gtk4-layer-shell-rs),  
 it brings a modern app launcher experience that integrates seamlessly into your desktop.
