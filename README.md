@@ -2,36 +2,35 @@
 
 <img src="assets/demo.gif" width="640" alt="Launchery demo showcase"/>
 
-> _"Made for me cause no other out there was doing what I wanted — and I'm picky."_  
-> _PS: I'm noob at Rust, this was hacked together in a day._
+> _“Whipped this up because no other launcher did what I wanted.”_  
+> _Rust skills: questionable. Result: usable._
 
-A lightweight, **(and hopefully fast)** GTK4 application launcher for Wayland.  
-Built with [`gtk4`](https://gtk-rs.org/), [`libadwaita`](https://gnome.pages.gitlab.gnome.org/libadwaita/), and [`gtk4-layer-shell`](https://github.com/wmww/gtk4-layer-shell-rs),  
-it brings a modern app launcher experience that integrates seamlessly into your desktop.
+A lightweight GTK4 app launcher for Wayland.  
+Built with [`gtk4`](https://gtk-rs.org/), [`libadwaita`](https://gnome.pages.gitlab.gnome.org/libadwaita/), and [`gtk4-layer-shell`](https://github.com/wmww/gtk4-layer-shell-rs).
 
 ---
 
 ## ✨ Features
 
-- **Instant fuzzy search** powered by [fuzzy-matcher](https://crates.io/crates/fuzzy-matcher).
-- **Customizable styles** via `config.toml` (highlight color, border radius, border width, etc.).
-- **App icons & highlighting** with fuzzy-match highlights in real-time.
-- **Smooth animations** thanks to `libadwaita` timed animations.
-- **Keyboard & mouse navigation**:
-- **Tab / Arrow keys** to move selection
-- **Enter** to launch
-- **Escape** to quit
-- **Scroll** through results
-- **Wayland-native** overlay window with `gtk4-layer-shell`.
+- Fast fuzzy search ([fuzzy-matcher](https://crates.io/crates/fuzzy-matcher))
+- Configurable styles via `config.toml`
+- App icons + live match highlighting
+- Smooth animations (libadwaita)
+- Keyboard + mouse controls:
+  - Arrows / Tab → move
+  - Enter → launch
+  - Esc → quit
+  - Scroll → browse
+- Wayland-native overlay window (`gtk4-layer-shell`)
 
 ---
 
-## 📂 Configuration
+## 📂 Config
 
-The launcher reads settings from a `config.toml` file.
+Launchery reads from a `config.toml`:
 
-- In **development/debug mode** → `./config.toml`
-- In **release mode** → `~/.config/launchery/config.toml`
+- **Dev mode** → `./config.toml`
+- **Release** → `~/.config/launchery/config.toml`
 
 ### Example `config.toml`
 
@@ -46,5 +45,4 @@ border_width  = 2
 [window]
 width = 540
 max_rows = 5
-
 ```
