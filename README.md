@@ -42,4 +42,9 @@ color = "red"
 [style]
 border_radius = 12
 border_width  = 2
+
+[window]
+width = 540
+max_rows = 5
+
 ```
