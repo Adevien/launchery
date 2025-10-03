@@ -13,16 +13,16 @@ it brings a modern app launcher experience that integrates seamlessly into your 
 
 ## ✨ Features
 
-- 🔍 **Instant fuzzy search** powered by [fuzzy-matcher](https://crates.io/crates/fuzzy-matcher).
-- 🎨 **Customizable styles** via `config.toml` (highlight color, border radius, border width).
-- 🖼️ **App icons & highlighting** with fuzzy-match highlights in real-time.
-- ⚡ **Smooth animations** thanks to `libadwaita` timed animations.
-- 🖱️ **Keyboard & mouse navigation**:
-  - **Tab / Arrow keys** to move selection
-  - **Enter** to launch
-  - **Escape** to quit
-  - **Scroll** through results
-- 🖥️ **Wayland-native** overlay window with `gtk4-layer-shell`.
+- **Instant fuzzy search** powered by [fuzzy-matcher](https://crates.io/crates/fuzzy-matcher).
+- **Customizable styles** via `config.toml` (highlight color, border radius, border width).
+- **App icons & highlighting** with fuzzy-match highlights in real-time.
+- **Smooth animations** thanks to `libadwaita` timed animations.
+- **Keyboard & mouse navigation**:
+- **Tab / Arrow keys** to move selection
+- **Enter** to launch
+- **Escape** to quit
+- **Scroll** through results
+- **Wayland-native** overlay window with `gtk4-layer-shell`.
 
 ---
 
