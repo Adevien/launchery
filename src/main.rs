@@ -884,6 +884,9 @@ fn build_app_window(app: &Application, config: Rc<Config>) {
 }
 
 fn main() {
+    std::env::set_var("GDK_BACKEND", "wayland");
+    std::env::set_var("GSK_RENDERER", "cairo");
+
     adw::init().expect("error adw could not load");
     let config = Rc::new(Config::load());
 
@@ -892,8 +895,6 @@ fn main() {
         .flags(gio::ApplicationFlags::HANDLES_COMMAND_LINE)
         .build();
 
-    std::env::set_var("GDK_BACKEND", "wayland");
-    std::env::set_var("GSK_RENDERER", "cairo");
     let window_handle: Rc<RefCell<Option<ApplicationWindow>>> = Rc::new(RefCell::new(None));
 
     {
