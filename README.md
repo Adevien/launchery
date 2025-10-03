@@ -14,7 +14,7 @@ it brings a modern app launcher experience that integrates seamlessly into your 
 ## ✨ Features
 
 - **Instant fuzzy search** powered by [fuzzy-matcher](https://crates.io/crates/fuzzy-matcher).
-- **Customizable styles** via `config.toml` (highlight color, border radius, border width).
+- **Customizable styles** via `config.toml` (highlight color, border radius, border width, etc.).
 - **App icons & highlighting** with fuzzy-match highlights in real-time.
 - **Smooth animations** thanks to `libadwaita` timed animations.
 - **Keyboard & mouse navigation**:
