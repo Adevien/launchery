@@ -891,7 +891,7 @@ fn main() {
     let config = Rc::new(Config::load());
 
     let app = Application::builder()
-        .application_id("com.example.Launchery")
+        .application_id("com.adv.Launchery")
         .flags(gio::ApplicationFlags::HANDLES_COMMAND_LINE)
         .build();
 
