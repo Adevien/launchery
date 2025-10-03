@@ -331,7 +331,6 @@ struct AppButton {
 impl AppButton {
     fn new(
         app: &Application,
-        window: &ApplicationWindow,
         config: Rc<Config>,
         icon_cache: Rc<IconCache>,
         cache: Rc<AppCache>,
@@ -353,7 +352,6 @@ impl AppButton {
 
         let last_app_index_for_click = Rc::new(RefCell::new(None));
         let last_app_index_clone = last_app_index_for_click.clone();
-        let window = window.clone();
         let app = app.clone();
         let cache_clone = cache.clone();
 
@@ -369,7 +367,6 @@ impl AppButton {
                     }
                 }
             }
-            window.close();
             app.quit();
         });
 
@@ -528,7 +525,6 @@ fn setup_ui_layout(window: &ApplicationWindow) -> (GtkBox, SearchEntry, GtkBox, 
 fn setup_button_pool(
     max_rows: usize,
     app: &Application,
-    window: &ApplicationWindow,
     config: Rc<Config>,
     icon_cache: Rc<IconCache>,
     cache: Rc<AppCache>,
@@ -536,15 +532,7 @@ fn setup_button_pool(
 ) -> Rc<Vec<AppButton>> {
     let button_pool: Rc<Vec<AppButton>> = Rc::new(
         (0..max_rows)
-            .map(|_| {
-                AppButton::new(
-                    app,
-                    window,
-                    config.clone(),
-                    icon_cache.clone(),
-                    cache.clone(),
-                )
-            })
+            .map(|_| AppButton::new(app, config.clone(), icon_cache.clone(), cache.clone()))
             .collect(),
     );
 
@@ -844,7 +832,6 @@ fn build_app_window(app: &Application, config: Rc<Config>) {
     let button_pool = setup_button_pool(
         max_rows,
         app,
-        &window,
         config.clone(),
         icon_cache.clone(),
         cache.clone(),
