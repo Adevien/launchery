@@ -1,0 +1,20 @@
+[highlight]
+color = "red"
+
+[style]
+border_radius = 12
+border_width = 2
+border_color = "@accent_bg_color"
+text_color = "@window_fg_color"
+font = "JetBrains Mono 11"
+
+[window]
+width = 540
+max_rows = 5
+
+[application]
+editor = "code"
+terminal = "ghostty"
+
+[scripts]
+allowed_shebangs = ["#!/bin/bash", "#!/usr/bin/env bash"]
