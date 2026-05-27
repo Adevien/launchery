@@ -2,7 +2,7 @@
 
 <img src="assets/demo.gif" width="640" alt="Launchery demo"/>
 
-Small GTK4 launcher for Wayland.
+Small GTK4 launcher for Wayland. Cool and simple
 
 It searches desktop apps, shows fuzzy matches, and can also run small shell scripts from your Launchery config dir.
 
