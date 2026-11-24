@@ -87,7 +87,6 @@ impl ResultButton {
     fn set_icon(&self, icon: &DisplayIcon) {
         match icon {
             DisplayIcon::Named(name) => self.img.set_icon_name(Some(name)),
-            DisplayIcon::File(path) => self.img.set_from_file(Some(path)),
             DisplayIcon::GIcon(icon) => self.img.set_from_gicon(icon),
         }
         self.img.set_pixel_size(24);

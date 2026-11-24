@@ -2,7 +2,8 @@ use super::{DisplayIcon, DisplayItem, MatchHandle, Plugin};
 use crate::config::{send_notification, Config};
 use crate::plugins::app_launcher::AppLauncherPlugin;
 use gtk4::prelude::*;
-use gtk4::Application;
+use gtk4::{glib, Application};
+use std::ffi::OsStr;
 use std::process::Command;
 use std::rc::Rc;
 
@@ -31,39 +32,28 @@ impl Plugin for ActionsPlugin {
     }
 
     fn get_actions(&self, _query: &str, item_index: usize) -> Vec<(DisplayItem, MatchHandle)> {
-        let (app_name, exec_parts) = match self.inner.get_app_info(item_index) {
+        let (app_name, exec_parts, launch) = match self.inner.get_app_info(item_index) {
             Some(info) => info,
             None => return Vec::new(),
         };
 
-        let cmd_string = exec_parts.join(" ");
+        let cmd_string = exec_parts
+            .iter()
+            .map(glib::shell_quote)
+            .collect::<Vec<_>>()
+            .join(OsStr::new(" "));
 
         vec![
+            (
+                DisplayItem {
+                    label: format!("Launch {}", app_name),
+                    icon: DisplayIcon::named("system-run"),
+                    highlight_indices: None,
+                },
+                launch,
+            ),
             {
-                let exec = exec_parts.clone();
-                let name = app_name.clone();
-                (
-                    DisplayItem {
-                        label: format!("Launch {}", app_name),
-                        icon: DisplayIcon::named("system-run"),
-                        highlight_indices: None,
-                    },
-                    MatchHandle::new(move |app: &Application| {
-                        if let Some(cmd) = exec.first() {
-                            if let Err(e) = Command::new(cmd).args(&exec[1..]).spawn() {
-                                eprintln!("Failed to launch {}: {}", name, e);
-                                send_notification(
-                                    "Launch Error",
-                                    &format!("Failed to launch {}: {}", name, e),
-                                );
-                            }
-                        }
-                        app.quit();
-                    }),
-                )
-            },
-            {
-                let exec = exec_parts.clone();
+                let command = cmd_string.clone();
                 let name = app_name.clone();
                 let terminal = self.config.get_terminal().map(|s| s.to_string());
                 (
@@ -74,18 +64,12 @@ impl Plugin for ActionsPlugin {
                     },
                     MatchHandle::new(move |app: &Application| {
                         if let Some(term) = &terminal {
-                            if let Some(cmd) = exec.first() {
-                                let full_cmd = if exec.len() > 1 {
-                                    format!("{} {}", cmd, exec[1..].join(" "))
-                                } else {
-                                    cmd.to_string()
-                                };
-
+                            if !command.is_empty() {
                                 if let Err(e) = Command::new(term)
                                     .arg("-e")
                                     .arg("sh")
                                     .arg("-c")
-                                    .arg(&full_cmd)
+                                    .arg(&command)
                                     .spawn()
                                 {
                                     eprintln!("Failed to launch {} in terminal: {}", name, e);
@@ -140,7 +124,7 @@ impl Plugin for ActionsPlugin {
                 let cmd = cmd_string.clone();
                 (
                     DisplayItem {
-                        label: format!("Copy command: {}", cmd_string),
+                        label: format!("Copy command: {}", cmd_string.to_string_lossy()),
                         icon: DisplayIcon::named("edit-copy"),
                         highlight_indices: None,
                     },

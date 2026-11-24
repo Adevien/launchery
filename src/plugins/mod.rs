@@ -7,7 +7,6 @@ use gtk4::{gio, Application};
 #[derive(Clone)]
 pub enum DisplayIcon {
     Named(String),
-    File(String),
     GIcon(gio::Icon),
 }
 
